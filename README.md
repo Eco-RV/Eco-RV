@@ -3,6 +3,7 @@
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=26&duration=3200&pause=900&color=2EA043&center=true&vCenter=true&width=620&lines=Hi%2C+I'm+Oswald+Reid+Villalobos+%F0%9F%91%8B;Full-Stack+Software+Developer;C%23+%2F+.NET+%C2%B7+SQL+Server;Learning+Web3+on+Stellar+%2B+Soroban" alt="Typing intro" />
 
 <p>
+  <a href="https://eco-rv.github.io/Eco-RV/"><img src="https://img.shields.io/badge/Portfolio-eco--rv.github.io-0B8A6F?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio" /></a>
   <a href="https://www.linkedin.com/in/ecorv/"><img src="https://img.shields.io/badge/LinkedIn-ecorv-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="mailto:osw2156@gmail.com"><img src="https://img.shields.io/badge/Email-osw2156%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
   <img src="https://img.shields.io/badge/Based%20in-Costa%20Rica%20🇨🇷-2EA043?style=for-the-badge" alt="Costa Rica" />
@@ -97,5 +98,5 @@ Full-stack software developer with 5 years of experience building and improving 
 ---
 
 <div align="center">
-  <sub>🚧 Portfolio in progress — coming soon right here.</sub>
+  <sub>🌿 See my services, clients and work at <a href="https://eco-rv.github.io/Eco-RV/">eco-rv.github.io/Eco-RV</a></sub>
 </div>
