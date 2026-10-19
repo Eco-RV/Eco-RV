@@ -18,7 +18,7 @@ Full-stack software developer with 5 years of experience building and improving 
 
 - 🏢 Software Developer / Development Executive at **Business Pro S.A.** — since 2022
 - 🧾 Ask me about **electronic invoicing, ERP systems, Windows Services and data replication**
-- 🌱 Currently learning **Web3, blockchain, Stellar, Soroban and smart contracts**
+- 🌱 Currently learning **Rust, Web3, blockchain, Stellar, Soroban and smart contracts**
 - 🎓 Master's in AI Development — BIG School · Bachelor's in Software Development — Universidad Fidélitas
 - 🌎 Spanish (native) · English (B2, TOEIC)
 
@@ -45,11 +45,12 @@ Full-stack software developer with 5 years of experience building and improving 
 ### 🌱 Learning
 
 <p>
+  <img src="https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust&logoColor=white" alt="Rust" />
   <img src="https://img.shields.io/badge/Web3-F16822?style=flat-square&logo=web3dotjs&logoColor=white" alt="Web3" />
   <img src="https://img.shields.io/badge/Blockchain-121D33?style=flat-square&logo=blockchaindotcom&logoColor=white" alt="Blockchain" />
   <img src="https://img.shields.io/badge/Stellar-7D00FF?style=flat-square&logo=stellar&logoColor=white" alt="Stellar" />
   <img src="https://img.shields.io/badge/Soroban-7D00FF?style=flat-square&logo=stellar&logoColor=white" alt="Soroban" />
-  <img src="https://img.shields.io/badge/Smart%20Contracts-363636?style=flat-square&logo=rust&logoColor=white" alt="Smart contracts" />
+  <img src="https://img.shields.io/badge/Smart%20Contracts-363636?style=flat-square&logo=solidity&logoColor=white" alt="Smart contracts" />
 </p>
 
 ---
