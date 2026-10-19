@@ -1,11 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Os</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oswald Reid Villalobos</title>
+  <meta name="description" content="Full-stack developer in Costa Rica building custom software for businesses: desktop and web apps, integrations, data replication and agentic AI.">
+  <meta name="theme-color" content="#E9EFEC">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>
+    // Apply saved theme before paint to avoid a flash
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
 </head>
 <body>
-    
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <canvas id="mist" aria-hidden="true"></canvas>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="mark" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path d="M6 26C6 13 13 6 26 6c0 13-7 20-20 20Z" fill="currentColor"/><path d="M6 26 18 14" stroke="var(--fog)" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Oswald Reid</span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#work">Clients</a>
+      <a href="#ai">AI agents</a>
+      <a href="#path">Path</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch color theme">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle class="sun" cx="12" cy="12" r="5" fill="currentColor"/><g class="rays" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></g></svg>
+    </button>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <h1 class="name" aria-label="Oswald Reid Villalobos">
+          <span class="name-line" data-split>Oswald</span>
+          <span class="name-line" data-split>Reid Villalobos</span>
+        </h1>
+        <p class="lede reveal-load" style="--d: 1.1s">
+          Full-stack developer in San José, Costa Rica. For five years I've built custom software
+          around how real businesses work: desktop and web apps, integrations, data replication
+          and, now, AI agents.
+        </p>
+        <div class="hero-actions reveal-load" style="--d: 1.3s">
+          <a class="btn btn-solid magnetic" href="#services">What I can build</a>
+          <a class="btn btn-ghost magnetic" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <figure class="query reveal-load" style="--d: .6s" aria-label="A SQL query that returns a short profile">
+        <div class="query-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="query-title">profile.sql</span>
+        </div>
+        <pre class="query-code"><code id="sql"></code><span class="caret" aria-hidden="true"></span></pre>
+        <table class="query-result" id="result">
+          <thead><tr><th>name</th><th>role</th><th>builds</th></tr></thead>
+          <tbody><tr><td>Oswald Reid</td><td>Full-stack dev</td><td>Custom software</td></tr></tbody>
+        </table>
+        <figcaption class="query-status" id="status">Ready</figcaption>
+      </figure>
+
+      <a class="scroll-cue" href="#services" aria-label="Scroll to services">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section services-section" id="services">
+      <div class="section-head">
+        <h2 class="title">What I can build for you</h2>
+        <p>Software shaped around your operation, not the other way around. Open any line to see what it includes.</p>
+      </div>
+      <ul class="services" id="services-list"></ul>
+    </section>
+
+    <!-- CLIENTS -->
+    <section class="section work-section" id="work">
+      <div class="section-head">
+        <h2 class="title">Real clients, real systems</h2>
+        <p>Projects I've built and supported at Business Pro, for companies that run their day on this software.</p>
+      </div>
+      <div class="projects" id="projects"></div>
+    </section>
+
+    <!-- SYNC -->
+    <section class="section sync-section" id="sync">
+      <div class="section-head">
+        <h2 class="title">Systems that stay in agreement</h2>
+        <p>
+          For clients like ZetaGas I build Windows Services that move data between the back office and the web
+          in real time. When the link drops, nothing is lost: changes wait in a queue and go through once it's back.
+          Try it.
+        </p>
+      </div>
+
+      <div class="sync">
+        <svg class="sync-diagram" viewBox="0 0 900 260" role="img" aria-labelledby="sync-desc">
+          <desc id="sync-desc">Records flow from the back office, through a Windows Service, to the web platform.</desc>
+          <path id="link-a" class="link" d="M180 130 C 290 60, 340 60, 450 130"/>
+          <path id="link-b" class="link link-b" d="M450 130 C 560 200, 610 200, 720 130"/>
+          <g class="node" transform="translate(110 130)">
+            <rect x="-80" y="-48" width="160" height="96" rx="18"/>
+            <text y="-6">Back office</text>
+            <text class="sub" y="18">SQL Server</text>
+          </g>
+          <g class="node node-service" transform="translate(450 130)">
+            <circle r="58"/>
+            <text y="-6">Windows</text>
+            <text y="14">Service</text>
+            <text class="queue" id="queue" y="38"></text>
+          </g>
+          <g class="node" transform="translate(790 130)">
+            <rect x="-80" y="-48" width="160" height="96" rx="18"/>
+            <text y="-6">Web</text>
+            <text class="sub" y="18">Platform</text>
+          </g>
+          <g id="packets"></g>
+        </svg>
+
+        <div class="sync-controls">
+          <button class="btn btn-ghost" type="button" id="outage" aria-pressed="false">Cut the connection</button>
+          <p class="sync-log" id="sync-log" aria-live="polite">Connected. Records are syncing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI AGENTS -->
+    <section class="section ai-section" id="ai">
+      <div class="section-head">
+        <h2 class="title">Agentic AI on top of your data</h2>
+        <p>
+          I'm adding agentic AI to the systems I build: agents that plan, query your database, check their own work
+          and hand your team an answer. Here's the kind of flow I mean, on an inventory question.
+        </p>
+      </div>
+
+      <div class="agent" id="agent">
+        <div class="agent-bar">
+          <span class="agent-dot"></span>
+          <span>Inventory agent</span>
+          <button class="agent-replay" type="button" id="agent-replay">Run again</button>
+        </div>
+        <div class="agent-body">
+          <p class="agent-ask"><span class="who">You</span><span id="agent-question"></span></p>
+          <ol class="agent-steps" id="agent-steps" aria-live="polite"></ol>
+          <p class="agent-answer" id="agent-answer"><span class="who">Agent</span><span class="text"></span></p>
+        </div>
+      </div>
+      <p class="ai-note">Illustrative example. I'm studying a Master's in AI Development at BIG School and applying it to real business software.</p>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section process-section" id="process">
+      <div class="section-head">
+        <h2 class="title">How we'd work together</h2>
+        <p>The same process I follow with clients at Business Pro, from the first conversation to support.</p>
+      </div>
+      <ol class="process">
+        <li><h3>Understand the business</h3><p>I sit with your team, learn how the operation really runs and gather the requirements.</p></li>
+        <li><h3>Design the solution</h3><p>We agree on scope, data and screens before any code, so there are no surprises.</p></li>
+        <li><h3>Build and document</h3><p>Clean, scalable code with documentation your team can rely on, tested with real cases.</p></li>
+        <li><h3>Support and improve</h3><p>I stay through implementation and QA, and keep improving the system as your business grows.</p></li>
+      </ol>
+    </section>
+
+    <!-- PATH -->
+    <section class="section path-section" id="path">
+      <div class="section-head">
+        <h2 class="title">How I got here</h2>
+      </div>
+      <ol class="timeline">
+        <li class="tl-item">
+          <time>2021</time>
+          <h3>Colmena Technologies</h3>
+          <p class="role">Software Developer Intern</p>
+          <p>First team projects, working with Git and GitHub for version control.</p>
+        </li>
+        <li class="tl-item">
+          <time>2022</time>
+          <h3>Business Pro</h3>
+          <p class="role">Software Developer / Development Executive</p>
+          <p>Started on escalated cases across ERP, HR, accounting and inventory, then moved to building new features and custom systems for clients. I've worked in every stage: support, implementation, QA, development and business.</p>
+        </li>
+        <li class="tl-item">
+          <time>Now</time>
+          <h3>Agentic AI and Web3</h3>
+          <p class="role">Master's in AI Development, BIG School</p>
+          <p>Bringing AI agents into business software, and learning Rust, Stellar and Soroban to build smart contracts.</p>
+        </li>
+      </ol>
+
+      <p class="edu">
+        <strong>Bachelor's in Software Development</strong>, Universidad Fidélitas, San José.
+        Spanish native, English B2 (TOEIC).
+      </p>
+
+      <div class="stack">
+        <h3 class="stack-title">What I work with</h3>
+        <dl class="stack-groups">
+          <div><dt>Languages and platforms</dt><dd><span>C#</span><span>VB.NET</span><span>JavaScript</span><span>.NET</span><span>DevExpress</span></dd></div>
+          <div><dt>Architecture</dt><dd><span>Desktop apps</span><span>Web apps</span><span>APIs</span><span>Microservices</span><span>Windows Services</span></dd></div>
+          <div><dt>Data</dt><dd><span>SQL Server</span><span>T-SQL</span><span>Stored procedures</span><span>PostgreSQL</span><span>Data replication</span><span>Crystal Reports</span></dd></div>
+          <div><dt>AI and practices</dt><dd><span>Agentic AI</span><span>Git</span><span>Clean code</span><span>Agile</span><span>UI/UX</span></dd></div>
+          <div class="is-learning"><dt>Learning</dt><dd><span>Rust</span><span>Web3</span><span>Blockchain</span><span>Stellar</span><span>Soroban</span><span>Smart contracts</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="community">
+        <h3 class="stack-title">Community</h3>
+        <ul>
+          <li>Attendee at <strong>BAF Costa Rica</strong> events.</li>
+          <li>Regular at <strong>CriptoCantinas</strong>, crypto community networking meetups in Costa Rica.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <h2 class="contact-title" data-split-words>Need software built around your business?</h2>
+      <p class="contact-lede">Tell me what slows your team down. I'll tell you honestly what I'd build.</p>
+      <div class="contact-actions">
+        <button class="btn btn-solid btn-lg magnetic" type="button" id="copy-email" data-email="osw2156@gmail.com">
+          <span class="label">osw2156@gmail.com</span>
+        </button>
+        <a class="btn btn-ghost btn-lg magnetic" href="https://www.linkedin.com/in/ecorv/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost btn-lg magnetic" href="https://github.com/Eco-RV" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p class="copy-hint" id="copy-hint" aria-live="polite">Click the address to copy it.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built by hand in San José, Costa Rica.</p>
+    <p>© <span id="year">2026</span> Oswald Reid Villalobos</p>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
