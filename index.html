@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oswald Reid Villalobos</title>
   <meta name="description" content="Full-stack developer in Costa Rica building custom software for businesses: desktop and web apps, integrations, data replication and agentic AI.">
-  <meta name="theme-color" content="#E9EFEC">
+  <meta name="theme-color" content="#000000">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500..900&family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>
     // Apply saved theme before paint to avoid a flash
@@ -24,7 +24,7 @@
 
   <header class="site-header">
     <a class="mark" href="#top" aria-label="Back to top">
-      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path d="M6 26C6 13 13 6 26 6c0 13-7 20-20 20Z" fill="currentColor"/><path d="M6 26 18 14" stroke="var(--fog)" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="mark-box" aria-hidden="true">OR</span>
       <span>Oswald Reid</span>
     </a>
     <nav aria-label="Main">
@@ -39,14 +39,31 @@
     </button>
   </header>
 
+  <nav class="side-index" aria-label="Sections">
+    <a href="#top">00</a>
+    <a href="#services">01</a>
+    <a href="#work">02</a>
+    <a href="#sync">03</a>
+    <a href="#ai">04</a>
+    <a href="#process">05</a>
+    <a href="#path">06</a>
+    <a href="#contact">07</a>
+  </nav>
+
   <main id="main">
     <!-- HERO -->
     <section class="hero" id="top">
+      <div class="hero-slab" aria-hidden="true"></div>
       <div class="hero-copy">
+        <div class="hero-kicker reveal-load" style="--d: .2s">
+          <span class="jp" lang="ja">オズワルド・レイド</span>
+          <span class="tag">Full-stack dev / San José, CR</span>
+        </div>
         <h1 class="name" aria-label="Oswald Reid Villalobos">
           <span class="name-line" data-split>Oswald</span>
           <span class="name-line" data-split>Reid Villalobos</span>
         </h1>
+        <div class="rule" aria-hidden="true"></div>
         <p class="lede reveal-load" style="--d: 1.1s">
           Full-stack developer in San José, Costa Rica. For five years I've built custom software
           around how real businesses work: desktop and web apps, integrations, data replication
@@ -60,7 +77,8 @@
 
       <figure class="query reveal-load" style="--d: .6s" aria-label="A SQL query that returns a short profile">
         <div class="query-bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="blink" aria-hidden="true"></span>
+          <span>Query</span>
           <span class="query-title">profile.sql</span>
         </div>
         <pre class="query-code"><code id="sql"></code><span class="caret" aria-hidden="true"></span></pre>
@@ -71,14 +89,20 @@
         <figcaption class="query-status" id="status">Ready</figcaption>
       </figure>
 
-      <a class="scroll-cue" href="#services" aria-label="Scroll to services">
-        <span></span>
-      </a>
+      <a class="scroll-cue" href="#services"><span></span>Scroll</a>
     </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Custom software</span><span>.NET</span><span class="jp">開発</span><span>SQL Server</span><span>Agentic AI</span><span>Windows Services</span><span class="jp">データ</span><span>Data replication</span><span>Rust</span><span>Stellar</span>
+        <span>Custom software</span><span>.NET</span><span class="jp">開発</span><span>SQL Server</span><span>Agentic AI</span><span>Windows Services</span><span class="jp">データ</span><span>Data replication</span><span>Rust</span><span>Stellar</span>
+      </div>
+    </div>
 
     <!-- SERVICES -->
     <section class="section services-section" id="services">
       <div class="section-head">
+        <div class="sec-tag"><span class="sec-no">01</span><span class="jp" lang="ja">サービス</span><span>Services</span></div>
         <h2 class="title">What I can build for you</h2>
         <p>Software shaped around your operation, not the other way around. Open any line to see what it includes.</p>
       </div>
@@ -88,6 +112,7 @@
     <!-- CLIENTS -->
     <section class="section work-section" id="work">
       <div class="section-head">
+        <div class="sec-tag"><span class="sec-no">02</span><span class="jp" lang="ja">クライアント</span><span>Clients</span></div>
         <h2 class="title">Real clients, real systems</h2>
         <p>Projects I've built and supported at Business Pro, for companies that run their day on this software.</p>
       </div>
@@ -97,6 +122,7 @@
     <!-- SYNC -->
     <section class="section sync-section" id="sync">
       <div class="section-head">
+        <div class="sec-tag"><span class="sec-no">03</span><span class="jp" lang="ja">同期</span><span>Sync</span></div>
         <h2 class="title">Systems that stay in agreement</h2>
         <p>
           For clients like ZetaGas I build Windows Services that move data between the back office and the web
@@ -105,7 +131,7 @@
         </p>
       </div>
 
-      <div class="sync">
+      <div class="sync hud">
         <svg class="sync-diagram" viewBox="0 0 900 260" role="img" aria-labelledby="sync-desc">
           <desc id="sync-desc">Records flow from the back office, through a Windows Service, to the web platform.</desc>
           <path id="link-a" class="link" d="M180 130 C 290 60, 340 60, 450 130"/>
@@ -139,6 +165,7 @@
     <!-- AI AGENTS -->
     <section class="section ai-section" id="ai">
       <div class="section-head">
+        <div class="sec-tag"><span class="sec-no">04</span><span class="jp" lang="ja">エージェント</span><span>AI agents</span></div>
         <h2 class="title">Agentic AI on top of your data</h2>
         <p>
           I'm adding agentic AI to the systems I build: agents that plan, query your database, check their own work
@@ -146,7 +173,7 @@
         </p>
       </div>
 
-      <div class="agent" id="agent">
+      <div class="agent hud" id="agent">
         <div class="agent-bar">
           <span class="agent-dot"></span>
           <span>Inventory agent</span>
@@ -164,6 +191,7 @@
     <!-- PROCESS -->
     <section class="section process-section" id="process">
       <div class="section-head">
+        <div class="sec-tag"><span class="sec-no">05</span><span class="jp" lang="ja">プロセス</span><span>Process</span></div>
         <h2 class="title">How we'd work together</h2>
         <p>The same process I follow with clients at Business Pro, from the first conversation to support.</p>
       </div>
@@ -178,6 +206,7 @@
     <!-- PATH -->
     <section class="section path-section" id="path">
       <div class="section-head">
+        <div class="sec-tag"><span class="sec-no">06</span><span class="jp" lang="ja">経歴</span><span>Path</span></div>
         <h2 class="title">How I got here</h2>
       </div>
       <ol class="timeline">
@@ -207,7 +236,7 @@
       </p>
 
       <div class="stack">
-        <h3 class="stack-title">What I work with</h3>
+        <h3 class="stack-title">What I work with <span class="jp" lang="ja">技術</span></h3>
         <dl class="stack-groups">
           <div><dt>Languages and platforms</dt><dd><span>C#</span><span>VB.NET</span><span>JavaScript</span><span>.NET</span><span>DevExpress</span></dd></div>
           <div><dt>Architecture</dt><dd><span>Desktop apps</span><span>Web apps</span><span>APIs</span><span>Microservices</span><span>Windows Services</span></dd></div>
@@ -218,7 +247,7 @@
       </div>
 
       <div class="community">
-        <h3 class="stack-title">Community</h3>
+        <h3 class="stack-title">Community <span class="jp" lang="ja">コミュニティ</span></h3>
         <ul>
           <li>Attendee at <strong>BAF Costa Rica</strong> events.</li>
           <li>Regular at <strong>CriptoCantinas</strong>, crypto community networking meetups in Costa Rica.</li>
@@ -226,8 +255,9 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <div class="contact-wrap">
     <section class="section contact" id="contact">
+      <div class="sec-tag"><span class="sec-no">07</span><span class="jp" lang="ja">連絡</span><span>Contact</span></div>
       <h2 class="contact-title" data-split-words>Need software built around your business?</h2>
       <p class="contact-lede">Tell me what slows your team down. I'll tell you honestly what I'd build.</p>
       <div class="contact-actions">
@@ -239,6 +269,7 @@
       </div>
       <p class="copy-hint" id="copy-hint" aria-live="polite">Click the address to copy it.</p>
     </section>
+    </div>
   </main>
 
   <footer class="site-footer">

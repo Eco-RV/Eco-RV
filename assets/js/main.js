@@ -120,62 +120,40 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   });
 })();
 
-/* ---------- Mist + fireflies canvas ---------- */
+/* ---------- Halftone dot field: dots swell near the cursor ---------- */
 (() => {
   const canvas = $('#mist');
   const ctx = canvas.getContext('2d');
-  let w, h, dpr, blobs, flies;
+  const GAP = 22;
+  let w, h, dpr, cols, rows;
+  let mx = -1e4, my = -1e4, tx = -1e4, ty = -1e4;
   const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
   function resize() {
     dpr = Math.min(devicePixelRatio || 1, 2);
     w = canvas.width = innerWidth * dpr;
     h = canvas.height = innerHeight * dpr;
-    blobs = Array.from({ length: 6 }, (_, i) => ({
-      x: Math.random() * w, y: Math.random() * h,
-      r: (Math.random() * .35 + .25) * Math.max(w, h),
-      vx: (Math.random() - .5) * .25 * dpr, vy: (Math.random() - .5) * .18 * dpr,
-      c: i % 2 ? '--mist-a' : '--mist-b',
-    }));
-    flies = Array.from({ length: innerWidth < 700 ? 18 : 40 }, () => ({
-      x: Math.random() * w, y: Math.random() * h,
-      a: Math.random() * Math.PI * 2, s: (Math.random() * .4 + .15) * dpr,
-      p: Math.random() * Math.PI * 2,
-    }));
+    cols = Math.ceil(innerWidth / GAP) + 1;
+    rows = Math.ceil(innerHeight / GAP) + 1;
   }
-
-  let mx = -1e4, my = -1e4;
-  addEventListener('pointermove', (e) => { mx = e.clientX * dpr; my = e.clientY * dpr; }, { passive: true });
+  addEventListener('pointermove', (e) => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  document.addEventListener('pointerleave', () => { tx = ty = -1e4; });
 
   function frame(t) {
     ctx.clearRect(0, 0, w, h);
-    const colors = { '--mist-a': css('--mist-a'), '--mist-b': css('--mist-b') };
-    for (const b of blobs) {
-      b.x += b.vx; b.y += b.vy;
-      if (b.x < -b.r) b.x = w + b.r; if (b.x > w + b.r) b.x = -b.r;
-      if (b.y < -b.r) b.y = h + b.r; if (b.y > h + b.r) b.y = -b.r;
-      const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-      g.addColorStop(0, colors[b.c]);
-      g.addColorStop(1, 'transparent');
-      ctx.fillStyle = g;
-      ctx.fillRect(b.x - b.r, b.y - b.r, b.r * 2, b.r * 2);
-    }
-    // Fireflies only glow in the dark theme
-    if (css('--firefly') === '1') {
-      const glow = css('--quetzal');
-      for (const f of flies) {
-        f.a += (Math.random() - .5) * .2;
-        f.x += Math.cos(f.a) * f.s; f.y += Math.sin(f.a) * f.s;
-        const dx = f.x - mx, dy = f.y - my, d = Math.hypot(dx, dy);
-        if (d < 120 * dpr) { f.x += dx / d * 1.5 * dpr; f.y += dy / d * 1.5 * dpr; }
-        if (f.x < 0) f.x = w; if (f.x > w) f.x = 0; if (f.y < 0) f.y = h; if (f.y > h) f.y = 0;
-        const alpha = (Math.sin(t / 700 + f.p) + 1) / 2;
-        ctx.globalAlpha = alpha * .9;
-        ctx.fillStyle = glow;
-        ctx.shadowColor = glow; ctx.shadowBlur = 12 * dpr;
-        ctx.beginPath(); ctx.arc(f.x, f.y, 1.6 * dpr, 0, Math.PI * 2); ctx.fill();
+    mx += (tx - mx) * .12; my += (ty - my) * .12;
+    const rgb = css('--dot');
+    const off = (scrollY * .3) % GAP;
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const px = x * GAP, py = y * GAP - off;
+        const d = Math.hypot(px - mx, py - my);
+        const k = Math.max(0, 1 - d / 180);
+        const wave = reduceMotion ? 0 : (Math.sin(t / 1400 + x * .35 + y * .2) + 1) * .35;
+        const r = .7 + wave + k * 4;
+        ctx.fillStyle = k > .55 ? 'rgba(255, 45, 45, .55)' : `rgba(${rgb}, ${.10 + k * .3})`;
+        ctx.fillRect((px - r) * dpr, (py - r) * dpr, r * 2 * dpr, r * 2 * dpr);
       }
-      ctx.globalAlpha = 1; ctx.shadowBlur = 0;
     }
     if (!reduceMotion) requestAnimationFrame(frame);
   }
@@ -211,8 +189,7 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
       const r = c.getBoundingClientRect();
       const d = Math.hypot(r.left + r.width / 2 - px, r.top + r.height / 2 - py);
       const k = Math.max(0, 1 - d / 260);
-      c.style.setProperty('--w', (800 - k * 600).toFixed(0));
-      c.style.setProperty('--wd', (100 - k * 25).toFixed(1));
+      c.style.setProperty('--w', (900 - k * 400).toFixed(0));
     }
   }
   const hero = $('.hero');
@@ -442,6 +419,8 @@ const agentDemo = (() => {
   const header = $('.site-header');
   const links = $$('.site-header nav a');
   const sections = links.map((a) => $(a.getAttribute('href')));
+  const sideLinks = $$('.side-index a');
+  const sideSections = sideLinks.map((a) => $(a.getAttribute('href')));
   let lastY = scrollY;
 
   function onScroll() {
@@ -460,6 +439,10 @@ const agentDemo = (() => {
     let current = -1;
     sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < vh * .4) current = i; });
     links.forEach((a, i) => a.classList.toggle('is-current', i === current));
+
+    let side = 0;
+    sideSections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < vh * .4) side = i; });
+    sideLinks.forEach((a, i) => a.classList.toggle('is-current', i === side));
   }
   addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: true });
   onScroll();
@@ -470,11 +453,12 @@ const agentDemo = (() => {
   const wrap = $('#projects');
   const art = (i) => {
     const shapes = [
-      '<path d="M120 10c60 0 110 50 110 110S180 230 120 230 10 180 10 120 60 10 120 10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 10"/><circle cx="120" cy="120" r="60" fill="currentColor" opacity=".25"/>',
-      '<g fill="none" stroke="currentColor" stroke-width="2"><circle cx="70" cy="120" r="40"/><circle cx="170" cy="120" r="40"/><path d="M110 120h20" stroke-dasharray="4 4"/></g>',
-      '<g fill="currentColor" opacity=".4"><rect x="30" y="40" width="180" height="22" rx="11"/><rect x="60" y="90" width="150" height="22" rx="11"/><rect x="90" y="140" width="120" height="22" rx="11"/></g>',
+      '<g fill="none" stroke="currentColor" stroke-width="6"><rect x="20" y="20" width="200" height="200"/><rect x="70" y="70" width="100" height="100" fill="currentColor"/></g>',
+      '<g fill="currentColor"><path d="M20 120 120 20l100 100-100 100z" fill="none" stroke="currentColor" stroke-width="6"/><path d="M95 120 120 95l25 25-25 25z"/></g>',
+      '<g fill="currentColor"><rect x="20" y="40" width="200" height="26"/><rect x="60" y="96" width="160" height="26"/><rect x="100" y="152" width="120" height="26"/></g>',
+      '<g fill="none" stroke="currentColor" stroke-width="6"><circle cx="120" cy="120" r="96"/><path d="M24 120h192M120 24v192"/></g>',
     ];
-    return `<svg class="project-art" viewBox="0 0 240 240" style="color:var(${['--quetzal', '--iris', '--crimson'][i % 3]})" aria-hidden="true">${shapes[i % 3]}</svg>`;
+    return `<svg class="project-art" viewBox="0 0 240 240" style="color:var(${['--alert', '--ink', '--alert', '--ink'][i % 4]})" aria-hidden="true">${shapes[i % 4]}</svg>`;
   };
 
   wrap.innerHTML = PROJECTS.map((p, i) => {
