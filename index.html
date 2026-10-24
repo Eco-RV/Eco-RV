@@ -50,6 +50,15 @@
     </div>
   </header>
 
+  <nav class="side-index" aria-label="Sections">
+    <a href="#top">00</a>
+    <a href="#quests">01</a>
+    <a href="#skills">02</a>
+    <a href="#achievements">03</a>
+    <a href="#classes">04</a>
+    <a href="#contact">05</a>
+  </nav>
+
   <main id="main">
     <!-- HERO: player profile -->
     <section class="hero grid" id="top">
@@ -69,6 +78,8 @@
           <path d="M300 20 V340" stroke="#000" stroke-opacity=".25"/>
         </svg>
         <span class="art-tag">Level 05 · 5 years in production</span>
+        <span class="sticker" aria-hidden="true">Lv.05</span>
+        <span class="hazard" aria-hidden="true"></span>
       </div>
 
       <div class="cell hero-status">
@@ -112,10 +123,19 @@
       </div>
     </section>
 
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>FinanceOS</span><span>AstrOS</span><span>LibrOS</span><span>C# · .NET</span><span>SQL Server</span><span>Agentic AI</span><span>Rust</span><span>Soroban</span><span>Stellar</span>
+        <span>FinanceOS</span><span>AstrOS</span><span>LibrOS</span><span>C# · .NET</span><span>SQL Server</span><span>Agentic AI</span><span>Rust</span><span>Soroban</span><span>Stellar</span>
+      </div>
+    </div>
+
     <!-- QUEST LOG -->
+    <div class="slab">
     <section class="section" id="quests">
       <div class="section-head grid">
         <div class="cell head-title">
+          <span class="chapter" aria-hidden="true">01</span>
           <p class="kicker">Quest log</p>
           <h2 class="title">Projects in every stage</h2>
         </div>
@@ -154,11 +174,13 @@
         <div class="quests" data-quests="next"></div>
       </div>
     </section>
+    </div>
 
     <!-- SKILLS -->
     <section class="section" id="skills">
       <div class="section-head grid">
         <div class="cell head-title">
+          <span class="chapter" aria-hidden="true">02</span>
           <p class="kicker">Character stats</p>
           <h2 class="title">Skill tree</h2>
         </div>
@@ -189,6 +211,7 @@
     <section class="section" id="achievements">
       <div class="section-head grid">
         <div class="cell head-title">
+          <span class="chapter" aria-hidden="true">03</span>
           <p class="kicker">Achievements</p>
           <h2 class="title">Unlocked so far</h2>
         </div>
@@ -200,9 +223,11 @@
     </section>
 
     <!-- CLASSES: short services -->
+    <div class="slab">
     <section class="section" id="classes">
       <div class="section-head grid">
         <div class="cell head-title">
+          <span class="chapter" aria-hidden="true">04</span>
           <p class="kicker">Party roles</p>
           <h2 class="title">What I can do for your team</h2>
         </div>
@@ -212,6 +237,7 @@
       </div>
       <div class="grid classes" id="class-list"></div>
     </section>
+    </div>
 
     <!-- CONTACT -->
     <section class="section contact" id="contact">

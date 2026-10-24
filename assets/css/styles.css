@@ -406,3 +406,121 @@ a { color: inherit; }
   .char, [data-reveal] { opacity: 1; transform: none; }
   .boot { display: none; }
 }
+
+/* =========================================================
+   Fusion: Zenless Zone Zero energy on the Stellar Apex grid.
+   Paper slabs with diagonal cuts, heavy condensed type,
+   chapter numbers, film strip, stickers and hard shadows.
+   ========================================================= */
+:root {
+  --hazard: repeating-linear-gradient(-45deg, var(--signal) 0 12px, #0A0A0A 12px 24px);
+  --cut: clamp(28px, 4vw, 64px);
+}
+
+/* Heavy condensed display that widens on hover */
+.title {
+  font-weight: 900; text-transform: uppercase; line-height: .86; letter-spacing: -.005em;
+  font-variation-settings: "wdth" 72; transition: font-variation-settings .5s var(--ease-out);
+}
+.section-head:hover .title { font-variation-settings: "wdth" 100; }
+.name { font-weight: 900; text-transform: uppercase; line-height: .82; letter-spacing: -.01em; }
+.char { font-variation-settings: "wdth" var(--wd, 72), "wght" var(--w, 900); }
+
+/* Big chapter numbers, slanted like a game menu */
+.chapter {
+  display: block; margin-bottom: .1em;
+  font: 900 clamp(4rem, 2rem + 8vw, 9rem) / .8 var(--display); font-variation-settings: "wdth" 62;
+  color: transparent; -webkit-text-stroke: 2px var(--signal);
+  transform: skewX(-10deg); transform-origin: left bottom;
+}
+
+/* Paper slab: a full-bleed section with diagonal edges and a halftone texture */
+.slab {
+  --bg: var(--paper); --cell: var(--paper); --raise: #FFFFFF;
+  --ink: #0A0A0A; --muted: #55554F; --line: rgba(10, 10, 10, .2);
+  position: relative; z-index: 1;
+  margin: clamp(30px, 5vw, 60px) 0; padding: var(--cut) 0 calc(var(--cut) + 40px);
+  background-color: var(--paper); color: var(--ink);
+  background-image: radial-gradient(rgba(10, 10, 10, .13) 1px, transparent 1.5px);
+  background-size: 14px 14px;
+  clip-path: polygon(0 var(--cut), 100% 0, 100% calc(100% - var(--cut)), 0 100%);
+}
+/* Hazard band that follows the diagonal bottom edge */
+.slab::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--hazard);
+  clip-path: polygon(0 calc(100% - 18px), 100% calc(100% - var(--cut) - 18px), 100% calc(100% - var(--cut)), 0 100%);
+}
+.slab .section { padding-top: clamp(40px, 6vw, 80px); }
+.slab .title, .slab .kicker { color: var(--ink); }
+.slab .chapter { color: var(--ink); -webkit-text-stroke: 0; text-shadow: 6px 6px 0 var(--signal); }
+.slab .stage-dot.dev { box-shadow: 0 0 0 4px rgba(10, 10, 10, .15); }
+.slab .stage-dot.live { background: #0A0A0A; }
+
+/* Light theme flips the slabs to black and keeps yellow off paper */
+:root[data-theme="light"] .slab {
+  --bg: #0A0A0A; --cell: #0A0A0A; --raise: #151515;
+  --ink: #F2F2EC; --muted: #9C9C95; --line: rgba(242, 242, 236, .14);
+  background-color: #0A0A0A; background-image: radial-gradient(rgba(242, 242, 236, .1) 1px, transparent 1.5px);
+}
+:root[data-theme="light"] .title, :root[data-theme="light"] .name, :root[data-theme="light"] .kicker { color: var(--ink); }
+:root[data-theme="light"] .chapter { -webkit-text-stroke-color: var(--ink); }
+:root[data-theme="light"] .slab .chapter { color: var(--ink); }
+
+/* Quest cards: hard offset shadows and sticker-like stage chips */
+.quest { border: 2px solid var(--ink); background: var(--raise); box-shadow: 8px 8px 0 var(--ink); }
+.quest + .quest { margin-top: 22px; }
+.quest-art { border-right: 2px solid var(--ink); }
+.quest:hover { transform: translate(-3px, -3px); box-shadow: 12px 12px 0 var(--alert); background: var(--raise); }
+.badge-stage { display: inline-block; border: 2px solid var(--ink); transform: rotate(-4deg); box-shadow: 2px 2px 0 var(--ink); }
+.client-quests .grid { border: 2px solid var(--ink); background: var(--ink); gap: 2px; box-shadow: 8px 8px 0 var(--ink); }
+@media (max-width: 640px) { .quest-art { border-right: 0; border-bottom: 2px solid var(--ink); } }
+
+/* Buttons get a hard shadow and press down when clicked */
+.btn-solid, .btn-dark { box-shadow: 4px 4px 0 var(--alert); }
+.btn-line { box-shadow: 4px 4px 0 #0A0A0A; }
+.btn:active { transform: translate(calc(var(--mx) + 3px), calc(var(--my) + 3px)); box-shadow: 1px 1px 0 var(--alert); }
+
+/* Hero: sticker and hazard edge on the yellow block */
+.art-tag { bottom: 30px; }
+.hazard { position: absolute; left: 0; right: 0; bottom: 0; height: 16px; background: var(--hazard); }
+.sticker {
+  position: absolute; right: 1.2rem; top: 1.2rem; padding: .4rem .8rem;
+  background: var(--alert); color: #fff; box-shadow: 4px 4px 0 #0A0A0A;
+  font: 900 1.5rem / 1 var(--display); font-variation-settings: "wdth" 70; text-transform: uppercase;
+  transform: rotate(8deg); animation: sticker-in .6s 1.8s var(--ease-spring) both;
+}
+@keyframes sticker-in { from { transform: rotate(8deg) scale(2.4); opacity: 0; } }
+
+/* Film-strip ticker that overlaps the next slab */
+.ticker {
+  position: relative; z-index: 3; overflow: hidden; margin: clamp(40px, 6vw, 70px) 0 -40px;
+  padding: 24px 0; background: #0A0A0A; color: var(--signal);
+  border-block: 3px solid var(--alert); transform: rotate(-1.5deg) scale(1.03);
+}
+.ticker::before, .ticker::after { content: ""; position: absolute; left: 0; right: 0; height: 8px; background: repeating-linear-gradient(90deg, #F2F2EC 0 14px, transparent 14px 30px); }
+.ticker::before { top: 6px; }
+.ticker::after { bottom: 6px; }
+.ticker-track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
+.ticker-track span { padding: 0 1.4rem; white-space: nowrap; font: 900 clamp(1.5rem, 1rem + 1.8vw, 2.6rem) / 1.1 var(--display); font-variation-settings: "wdth" 70; text-transform: uppercase; }
+.ticker-track span:nth-child(even) { color: #F2F2EC; }
+.ticker-track span::after { content: " ✦"; color: var(--alert); padding-left: 1.4rem; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* Vertical section index on the right edge */
+.side-index {
+  position: fixed; right: 0; top: 50%; z-index: 90; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: .15rem; padding: .6rem .3rem;
+  background: #0A0A0A; border-left: 3px solid var(--signal);
+}
+.side-index a { writing-mode: vertical-rl; padding: .45rem .1rem; text-decoration: none; color: #8E8E88; font: 900 .95rem / 1 var(--display); font-variation-settings: "wdth" 70; letter-spacing: .08em; transition: color .2s, background-color .2s; }
+.side-index a:hover { color: #F2F2EC; }
+.side-index a.is-current { background: var(--signal); color: #0A0A0A; }
+@media (max-width: 1100px) { .side-index { display: none; } }
+
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } .sticker { animation: none; } }
+
+/* Fusion tweaks: art fills the whole card height, stage headings match the condensed titles */
+.quest-art { aspect-ratio: auto; min-height: 180px; }
+.stage-head h3 { font-weight: 900; font-stretch: normal; font-variation-settings: "wdth" 72; text-transform: uppercase; letter-spacing: 0; }
+@media (max-width: 640px) { .quest-art { min-height: 150px; } }

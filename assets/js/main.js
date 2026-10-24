@@ -191,8 +191,7 @@ const ART = {
     for (const c of chars) {
       const r = c.getBoundingClientRect();
       const k = Math.max(0, 1 - Math.hypot(r.left + r.width / 2 - px, r.top + r.height / 2 - py) / 320);
-      c.style.setProperty('--wd', (100 + k * 25).toFixed(1));
-      c.style.setProperty('--w', (600 + k * 300).toFixed(0));
+      c.style.setProperty('--wd', (72 + k * 53).toFixed(1));
     }
   };
   const zone = $('.hero');
@@ -343,7 +342,7 @@ $('#class-list').innerHTML = CLASSES.map((c) => `
 /* ---------- Scroll reveals ---------- */
 (() => {
   // Whole grids are revealed, not their cells: a hidden cell would expose the grid's line-colored background
-  $$('.section-head, .quest, .client-quests .grid, .locked-grid, .gauges, .badges, .classes, .contact .grid').forEach((el, i) => {
+  $$('.section-head, .quest, .client-quests .grid, .locked-grid, .badges, .classes, .contact .grid').forEach((el, i) => {
     el.setAttribute('data-reveal', '');
     el.style.setProperty('--rd', `${(i % 4) * .07}s`);
   });
@@ -362,12 +361,18 @@ $('#class-list').innerHTML = CLASSES.map((c) => `
   const bar = $('.progress span');
   const links = $$('.site-header nav a');
   const sections = links.map((a) => $(a.getAttribute('href')));
+  const sideLinks = $$('.side-index a');
+  const sideSections = sideLinks.map((a) => $(a.getAttribute('href')));
   const onScroll = () => {
     const vh = innerHeight;
     bar.style.transform = `scaleX(${scrollY / (document.documentElement.scrollHeight - vh) || 0})`;
     let current = -1;
     sections.forEach((s, i) => { if (s.getBoundingClientRect().top < vh * .4) current = i; });
     links.forEach((a, i) => a.classList.toggle('is-current', i === current));
+
+    let side = 0;
+    sideSections.forEach((s, i) => { if (s.getBoundingClientRect().top < vh * .4) side = i; });
+    sideLinks.forEach((a, i) => a.classList.toggle('is-current', i === side));
   };
   addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: true });
   onScroll();
