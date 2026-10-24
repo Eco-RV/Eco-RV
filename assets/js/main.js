@@ -1,171 +1,176 @@
 /* =========================================================
    Content: edit these lists to update the page
    ========================================================= */
-const ICONS = {
-  system: '<path d="M4 5h16v10H4z M9 19h6 M12 15v4" />',
-  apps: '<path d="M3 5h11v9H3z M14 9h7v10h-9v-5" />',
-  sync: '<path d="M4 9a8 8 0 0 1 14-3l2 2 M20 4v4h-4 M20 15a8 8 0 0 1-14 3l-2-2 M4 20v-4h4" />',
-  ai: '<path d="M12 3v3 M12 18v3 M3 12h3 M18 12h3 M6.3 6.3l2.1 2.1 M15.6 15.6l2.1 2.1 M6.3 17.7l2.1-2.1 M15.6 8.4l2.1-2.1" /><circle cx="12" cy="12" r="3" />',
-  report: '<path d="M5 20V10 M12 20V4 M19 20v-7" />',
-  talk: '<path d="M4 5h16v11H9l-5 4z M8 10h8 M8 13h5" />',
-};
 
-const SERVICES = [
+// Quest log. stage: 'dev' (in development), 'live' (live and shipped), 'next' (future ideas)
+const QUESTS = [
   {
-    icon: 'system',
-    name: 'Custom business systems',
-    text: 'Point of sale, inventory, transfers between branches, accounting per transaction and ERP modules, built around how your company actually operates.',
-    chips: ['C#', 'VB.NET', 'SQL Server', 'DevExpress'],
+    stage: 'dev', status: 'Beta', type: 'Main quest', art: 'gauge',
+    title: 'FinanceOS',
+    text: 'Personal finance for Costa Rican credit cards. It tells you how much to pay in full, by when, and whether your account covers it, in colones and dollars.',
+    tags: ['Personal finance', 'CRC · USD', 'Web app'],
+    url: 'https://financeos-ten-rust.vercel.app/',
   },
   {
-    icon: 'ai',
-    name: 'AI agents for your operation',
-    text: 'Agents that read your business data, run multi-step tasks and draft answers or reports, so your team spends less time on repetitive work.',
-    chips: ['Agentic AI', 'SQL Server', 'APIs'],
+    stage: 'dev', status: 'In development', type: 'Main quest', art: 'orbit',
+    title: 'AstrOS',
+    text: 'Your constellation of events: attendance badges kept in a Stellar wallet. No wallet yet? It creates one from your email or Google account.',
+    tags: ['Stellar', 'Testnet', 'Wallets', 'Badges'],
+    url: 'https://astros-two.vercel.app/',
   },
   {
-    icon: 'sync',
-    name: 'Integrations and data replication',
-    text: 'Windows Services and APIs that keep your back office, web platform and third-party systems like Softland in sync, even when a connection drops.',
-    chips: ['Windows Services', 'APIs', 'Microservices', 'Replication'],
-  },
-  {
-    icon: 'apps',
-    name: 'Desktop and web applications',
-    text: 'Back-office desktop software and web modules for your users and customers, including online stores, from the first requirement to production.',
-    chips: ['.NET', 'JavaScript', 'UI/UX'],
-  },
-  {
-    icon: 'report',
-    name: 'Reports and data analysis',
-    text: 'Reports designed with you around the decisions you need to make, built straight from your own data.',
-    chips: ['T-SQL', 'Stored procedures', 'Crystal Reports'],
-  },
-  {
-    icon: 'talk',
-    name: 'Requirements and consulting',
-    text: 'I sit with your team, learn the business and turn needs into a clear, documented plan before writing any code.',
-    chips: ['Requirements', 'Agile', 'Documentation'],
+    stage: 'live', status: 'Shipped', type: 'Challenge #1 · Stellar Sessions', art: 'grid',
+    title: 'LibrOS',
+    text: 'Guestbook for the Cripto Cantina. Connect a wallet, sign a message and it\'s stored on Stellar by a Soroban contract written in Rust, with every step explained.',
+    tags: ['Rust', 'Soroban', 'Stellar Testnet', 'TypeScript'],
+    url: 'https://libr-os-app.vercel.app/',
   },
 ];
 
-const PROJECTS = [
-  {
-    tag: 'Gold trading',
-    title: 'End-to-end system for gold trading companies',
-    text: 'Built with the team: point of sale, inventory, transfers between branches, data replication, the smelting shipment flow, per-transaction accounting designed with accounting firms, and an online store.',
-    stack: ['C#', 'SQL Server', 'Replication', 'Web'],
-  },
-  {
-    tag: 'ZetaGas · GasPro',
-    title: 'Gas distribution back office and web',
-    text: 'Windows Services and data replication between the GasPro back office and the web platform, web modules for users, and documentation of distribution, cash handling and plant closings.',
-    stack: ['Windows Services', 'SQL Server', 'Web'],
-  },
-  {
-    tag: 'ANC Car Renting',
-    title: 'Softland integrated with FlotasCR',
-    text: 'Solutions for a vehicle rental company running Softland, connected to the FlotasCR fleet system, plus support on their FePro and LinkPro integrations.',
-    stack: ['Integrations', 'SQL Server', 'Support'],
-  },
-  {
-    tag: 'Business Pro suite',
-    title: 'New features across a full ERP suite',
-    text: 'New requirements for clients of BusinessPro ERP, ABPro, SalesPro, ManagerPRO, LinkPro and FePro, covering HR, accounting and inventory (Kardex).',
-    stack: ['VB.NET', 'C#', 'DevExpress', 'Crystal Reports'],
-  },
+// Client systems in production, built at Business Pro
+const CLIENT_QUESTS = [
+  { title: 'Gold trading system', tag: 'Gold trading', text: 'Point of sale, inventory, branch transfers, smelting shipments, per-transaction accounting and an online store.' },
+  { title: 'GasPro for ZetaGas', tag: 'Gas distribution', text: 'Windows Services and data replication between the back office and the web, plus web modules for users.' },
+  { title: 'Softland + FlotasCR', tag: 'ANC Car Renting', text: 'Solutions for a vehicle rental company, integrated with its fleet system.' },
+  { title: 'Business Pro ERP suite', tag: 'ERP', text: 'New features for BusinessPro ERP, ABPro, SalesPro, ManagerPRO, LinkPro and FePro.' },
 ];
 
-// Illustrative agent run for the "Agentic AI" section
-const AGENT_RUN = {
-  question: 'Which branch moved the most inventory this week, and is anything unusual?',
-  steps: [
-    'Planning: <b>split the question into 3 tasks</b>',
-    'Querying SQL Server: <b>InventoryMovements</b> for this week and last week',
-    'Comparing branches and flagging changes above the usual range',
-    'Checking the result against the closing reports',
-  ],
-  answer: 'The central branch moved the most stock this week. One product line doubled compared with last week, all from a single transfer, so it\'s worth confirming with the warehouse.',
-};
+// Future ideas: replace these placeholders with your next missions
+const NEXT_MISSIONS = [
+  { title: 'Classified', hint: 'Idea loading' },
+  { title: 'Classified', hint: 'Idea loading' },
+  { title: 'Classified', hint: 'Idea loading' },
+];
 
+// Character stats (self-assessed, out of 10)
+const ATTRIBUTES = [
+  ['Backend', 8], ['Data', 8], ['Integrations', 7], ['Client skills', 8],
+  ['Frontend', 5], ['AI agents', 5], ['Web3', 3],
+];
+
+const GAUGES = [
+  { name: 'C# · .NET', level: 8, note: 'Daily since 2022' },
+  { name: 'SQL Server', level: 8, note: 'T-SQL, procedures, jobs' },
+  { name: 'Integrations', level: 7, note: 'Services and replication' },
+  { name: 'Client skills', level: 8, note: 'Requirements, negotiation' },
+];
+
+const SKILLS = [
+  ['C#', 8, 'Main language at Business Pro'],
+  ['.NET', 8, 'Desktop, web and services'],
+  ['SQL Server · T-SQL', 8, 'Stored procedures, jobs and replication'],
+  ['VB.NET', 7, 'Business Pro ERP suite'],
+  ['Windows Services', 7, 'Real-time sync for ZetaGas'],
+  ['Git · GitHub', 7, 'Version control since 2021'],
+  ['DevExpress', 6, 'Back-office desktop interfaces'],
+  ['Crystal Reports', 6, 'Custom reports for clients'],
+  ['JavaScript', 6, 'Web modules and apps'],
+  ['APIs · microservices', 6, 'Integrations between systems'],
+  ['PostgreSQL', 5, 'Relational data beyond SQL Server'],
+  ['Agentic AI', 5, 'Master\'s in AI Development, BIG School'],
+];
+
+// Skills being unlocked (progress in %, self-assessed)
+const UNLOCKING = [
+  ['Rust', 30], ['Soroban', 30], ['Stellar', 40], ['Smart contracts', 30], ['Web3', 35],
+];
+
+const ACHIEVEMENTS = [
+  { glyph: '05', title: 'Five years in production', when: '2021 → now', back: 'From intern at Colmena Technologies to developer and development executive at Business Pro.' },
+  { glyph: '#1', title: 'LibrOS shipped', when: 'Stellar Sessions', back: 'Challenge #1: a guestbook on Stellar with a Soroban contract in Rust.' },
+  { glyph: 'BAF', title: 'BAF Costa Rica', when: 'Community events', back: 'Attendee at BAF Costa Rica events.' },
+  { glyph: 'CC', title: 'Cripto Cantina regular', when: 'Networking', back: 'Regular at CriptoCantinas, crypto community meetups in Costa Rica.' },
+  { glyph: 'AI', title: 'Master\'s in AI Development', when: 'BIG School', back: 'Agentic AI applied to real business software.' },
+  { glyph: 'BSc', title: 'Bachelor\'s in Software Development', when: 'Universidad Fidélitas', back: 'Software development studies in San José.' },
+  { glyph: 'B2', title: 'English B2', when: 'TOEIC certified', back: 'Spanish native, English B2 for international teams.' },
+  { glyph: '360', title: 'Full cycle', when: 'Every stage', back: 'Support, implementation, QA, development and requirements with clients.' },
+];
+
+const CLASSES = [
+  { art: 'gauge', title: 'Custom business systems', text: 'Point of sale, inventory, branch transfers, accounting and ERP modules built around how you operate.', tags: ['C#', 'VB.NET', 'SQL Server'] },
+  { art: 'orbit', title: 'AI agents', text: 'Agents that read your data, run multi-step tasks and draft answers for your team.', tags: ['Agentic AI', 'APIs'] },
+  { art: 'grid', title: 'Integrations and data', text: 'Windows Services and APIs that keep your systems in sync, even when the connection drops.', tags: ['Windows Services', 'Replication'] },
+];
+
+/* =========================================================
+   Helpers
+   ========================================================= */
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-/* ---------- Theme toggle with circular reveal ---------- */
+// Flat Bauhaus illustrations, one per kind
+const ART = {
+  gauge: `<svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="200" height="200" fill="var(--signal)"/>
+      <circle cx="100" cy="150" r="90" fill="var(--paper)"/>
+      <g class="rot" style="transform-origin:100px 150px"><circle cx="100" cy="150" r="82" fill="none" stroke="#0A0A0A" stroke-width="10" stroke-dasharray="1.2 10"/></g>
+      <circle cx="100" cy="150" r="56" fill="#0A0A0A"/>
+      <path d="M100 150 L150 108" stroke="var(--alert)" stroke-width="5"/>
+      <circle cx="100" cy="150" r="8" fill="var(--signal)"/>
+    </svg>`,
+  orbit: `<svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="200" height="200" fill="#0A0A0A"/>
+      <circle cx="100" cy="100" r="80" fill="none" stroke="var(--signal)" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="56" fill="none" stroke="var(--signal)" stroke-width="1.5" stroke-dasharray="3 5"/>
+      <circle cx="100" cy="100" r="30" fill="var(--paper)"/>
+      <g class="rot"><circle cx="100" cy="20" r="9" fill="var(--alert)"/><circle cx="156" cy="100" r="6" fill="var(--signal)"/></g>
+    </svg>`,
+  grid: `<svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="200" height="200" fill="#0A0A0A"/>
+      <g fill="none" stroke="var(--signal)" stroke-width="1.5"><path d="M0 50h200M0 100h200M0 150h200M50 0v200M100 0v200M150 0v200"/></g>
+      <rect x="100" y="0" width="50" height="50" fill="var(--signal)"/>
+      <rect x="0" y="150" width="50" height="50" fill="var(--paper)"/>
+      <circle cx="125" cy="125" r="22" fill="none" stroke="var(--alert)" stroke-width="5"/>
+      <g class="rot"><circle cx="25" cy="25" r="12" fill="var(--paper)"/></g>
+      <circle cx="175" cy="75" r="10" fill="var(--alert)"/>
+    </svg>`,
+};
+
+/* ---------- Boot screen (once per session) ---------- */
 (() => {
-  const btn = $('.theme-toggle');
-  const root = document.documentElement;
-  const isDark = () => root.dataset.theme
-    ? root.dataset.theme === 'dark'
-    : matchMedia('(prefers-color-scheme: dark)').matches;
+  const boot = $('#boot');
+  let seen = false;
+  try { seen = sessionStorage.getItem('booted') === '1'; } catch (e) {}
+  if (seen || reduceMotion) { boot.classList.add('is-skipped'); return; }
 
-  btn.addEventListener('click', (e) => {
-    const next = isDark() ? 'light' : 'dark';
-    const apply = () => {
-      root.dataset.theme = next;
-      try { localStorage.setItem('theme', next); } catch (err) {}
-    };
-    if (!document.startViewTransition || reduceMotion) return apply();
-    const r = btn.getBoundingClientRect();
-    const x = r.left + r.width / 2, y = r.top + r.height / 2;
-    const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
-    document.startViewTransition(apply).ready.then(() => {
-      root.animate(
-        { clipPath: [`circle(0 at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
-        { duration: 700, easing: 'cubic-bezier(.65,0,.35,1)', pseudoElement: '::view-transition-new(root)' }
-      );
-    });
+  const bar = $('.boot-bar span', boot), status = $('#boot-status');
+  const steps = ['Loading save file', 'Loading quests', 'Loading skill tree', 'Ready'];
+  const t0 = performance.now(), DUR = 1300;
+  const done = () => {
+    boot.classList.add('is-done');
+    try { sessionStorage.setItem('booted', '1'); } catch (e) {}
+    setTimeout(() => boot.classList.add('is-skipped'), 800);
+  };
+  boot.addEventListener('click', done);
+  requestAnimationFrame(function step(t) {
+    const p = Math.min(1, (t - t0) / DUR);
+    bar.style.width = `${p * 100}%`;
+    status.textContent = `${steps[Math.min(steps.length - 1, Math.floor(p * steps.length))]} · ${Math.round(p * 100)}%`;
+    if (p < 1) requestAnimationFrame(step); else setTimeout(done, 250);
   });
 })();
 
-/* ---------- Halftone dot field: dots swell near the cursor ---------- */
+/* ---------- Theme toggle (dark by default) ---------- */
 (() => {
-  const canvas = $('#mist');
-  const ctx = canvas.getContext('2d');
-  const GAP = 22;
-  let w, h, dpr, cols, rows;
-  let mx = -1e4, my = -1e4, tx = -1e4, ty = -1e4;
-  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
-
-  function resize() {
-    dpr = Math.min(devicePixelRatio || 1, 2);
-    w = canvas.width = innerWidth * dpr;
-    h = canvas.height = innerHeight * dpr;
-    cols = Math.ceil(innerWidth / GAP) + 1;
-    rows = Math.ceil(innerHeight / GAP) + 1;
-  }
-  addEventListener('pointermove', (e) => { tx = e.clientX; ty = e.clientY; }, { passive: true });
-  document.addEventListener('pointerleave', () => { tx = ty = -1e4; });
-
-  function frame(t) {
-    ctx.clearRect(0, 0, w, h);
-    mx += (tx - mx) * .12; my += (ty - my) * .12;
-    const rgb = css('--dot');
-    const off = (scrollY * .3) % GAP;
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        const px = x * GAP, py = y * GAP - off;
-        const d = Math.hypot(px - mx, py - my);
-        const k = Math.max(0, 1 - d / 180);
-        const wave = reduceMotion ? 0 : (Math.sin(t / 1400 + x * .35 + y * .2) + 1) * .35;
-        const r = .7 + wave + k * 4;
-        ctx.fillStyle = k > .55 ? 'rgba(255, 45, 45, .55)' : `rgba(${rgb}, ${.10 + k * .3})`;
-        ctx.fillRect((px - r) * dpr, (py - r) * dpr, r * 2 * dpr, r * 2 * dpr);
-      }
-    }
-    if (!reduceMotion) requestAnimationFrame(frame);
-  }
-  resize();
-  addEventListener('resize', resize);
-  requestAnimationFrame(frame);
+  const btn = $('.theme-toggle'), root = document.documentElement;
+  btn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    const apply = () => {
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    };
+    if (!document.startViewTransition || reduceMotion) return apply();
+    document.startViewTransition(apply);
+  });
 })();
 
-/* ---------- Name: split letters, rise in, react to the cursor ---------- */
+/* ---------- Name: letters rise in and widen near the cursor ---------- */
 (() => {
-  let i = 0;
   const chars = [];
+  let i = 0;
   $$('[data-split]').forEach((line) => {
     const text = line.textContent;
     line.textContent = '';
@@ -174,347 +179,211 @@ const $$ = (s, el = document) => [...el.querySelectorAll(s)];
       const span = document.createElement('span');
       span.className = ch === ' ' ? 'char space' : 'char';
       span.textContent = ch === ' ' ? ' ' : ch;
-      span.style.setProperty('--delay', `${.15 + i++ * .045}s`);
+      span.style.setProperty('--delay', `${.2 + i++ * .05}s`);
       line.append(span);
       chars.push(span);
     }
   });
   if (reduceMotion || !finePointer) return;
-
-  // Letters near the cursor get lighter and wider, like a magnifier made of type
   let raf = 0, px = -1e4, py = -1e4;
-  function update() {
+  const update = () => {
     raf = 0;
     for (const c of chars) {
       const r = c.getBoundingClientRect();
-      const d = Math.hypot(r.left + r.width / 2 - px, r.top + r.height / 2 - py);
-      const k = Math.max(0, 1 - d / 260);
-      c.style.setProperty('--w', (900 - k * 400).toFixed(0));
+      const k = Math.max(0, 1 - Math.hypot(r.left + r.width / 2 - px, r.top + r.height / 2 - py) / 320);
+      c.style.setProperty('--wd', (100 + k * 25).toFixed(1));
+      c.style.setProperty('--w', (600 + k * 300).toFixed(0));
     }
+  };
+  const zone = $('.hero');
+  zone.addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; raf ||= requestAnimationFrame(update); });
+  zone.addEventListener('pointerleave', () => { px = py = -1e4; raf ||= requestAnimationFrame(update); });
+})();
+
+/* ---------- Quest log ---------- */
+(() => {
+  const label = { dev: 'In development', live: 'Live', next: 'Next' };
+  const card = (q) => `
+    <article class="quest">
+      <div class="quest-art">${ART[q.art]}</div>
+      <div class="quest-body">
+        <div class="quest-meta"><span class="badge-stage ${q.stage}">${esc(q.status)}</span><span class="quest-type">${esc(q.type)}</span></div>
+        <h4>${esc(q.title)}</h4>
+        <p>${esc(q.text)}</p>
+        <div class="quest-tags">${q.tags.map((t) => `<span>${esc(t)}</span>`).join('')}</div>
+        ${q.url ? `<a class="quest-link" href="${q.url}" target="_blank" rel="noopener">Launch app ↗</a>` : ''}
+      </div>
+    </article>`;
+
+  for (const stage of ['dev', 'live']) {
+    $(`[data-quests="${stage}"]`).innerHTML = QUESTS.filter((q) => q.stage === stage).map(card).join('');
   }
-  const hero = $('.hero');
-  hero.addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; raf ||= requestAnimationFrame(update); });
-  hero.addEventListener('pointerleave', () => { px = py = -1e4; raf ||= requestAnimationFrame(update); });
+
+  // Client systems go under "live", in a compact grid
+  const live = $('[data-stage="live"]');
+  live.insertAdjacentHTML('beforeend', `
+    <div class="client-quests">
+      <p class="kicker">Client quests · built at Business Pro</p>
+      <div class="grid">${CLIENT_QUESTS.map((c) => `
+        <div class="cell">
+          <div class="quest-meta"><span class="badge-stage live">In production</span><span class="quest-type">${esc(c.tag)}</span></div>
+          <h5>${esc(c.title)}</h5>
+          <p>${esc(c.text)}</p>
+        </div>`).join('')}
+      </div>
+    </div>`);
+
+  $('[data-quests="next"]').innerHTML = `<div class="grid locked-grid">${NEXT_MISSIONS.map((m) => `
+    <div class="cell locked">
+      <span class="lock" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+      <div><h5>${esc(m.title)}</h5><p>${esc(m.hint)}</p></div>
+    </div>`).join('')}</div>`;
+
+  const counts = {
+    dev: QUESTS.filter((q) => q.stage === 'dev').length,
+    live: QUESTS.filter((q) => q.stage === 'live').length + CLIENT_QUESTS.length,
+    next: NEXT_MISSIONS.length,
+  };
+  $$('[data-count-for]').forEach((el) => { el.textContent = `${String(counts[el.dataset.countFor]).padStart(2, '0')} ${label[el.dataset.countFor] === 'Next' ? 'locked' : 'quests'}`; });
 })();
 
-/* ---------- SQL query that types itself ---------- */
+/* ---------- Radar chart ---------- */
 (() => {
-  const code = $('#sql'), result = $('#result'), status = $('#status');
-  const lines = [
-    [['kw', 'SELECT TOP'], ['', ' 1 name, role, builds\n']],
-    [['kw', 'FROM'], ['', '   dbo.Developers\n']],
-    [['kw', 'WHERE'], ['', '  country = '], ['str', "'CR'"], ['', '\n']],
-    [['kw', '  AND'], ['', '  stack '], ['kw', 'LIKE'], ['', ' '], ['str', "'%.NET%'"], ['', ';\n']],
-    [['cm', '-- built around your business']],
-  ];
-
-  const render = (upto) => {
-    let left = upto, html = '';
-    for (const line of lines) for (const [cls, txt] of line) {
-      if (left <= 0) break;
-      const part = txt.slice(0, left); left -= part.length;
-      const esc = part.replace(/&/g, '&amp;').replace(/</g, '&lt;');
-      html += cls ? `<span class="${cls}">${esc}</span>` : esc;
-    }
-    code.innerHTML = html;
+  const svg = $('#radar'), R = 120, n = ATTRIBUTES.length;
+  const pt = (i, v) => {
+    const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+    return [Math.cos(a) * R * v / 10, Math.sin(a) * R * v / 10];
   };
-  const total = lines.flat().reduce((n, [, t]) => n + t.length, 0);
-
-  const finish = (ms) => {
-    result.classList.add('is-filled');
-    status.textContent = `(1 row affected)  ${ms} ms`;
-    status.classList.add('ok');
-  };
-  if (reduceMotion) { render(total); finish(12); return; }
-
-  let n = 0;
-  setTimeout(function tick() {
-    render(++n);
-    if (n < total) return setTimeout(tick, code.textContent.endsWith('\n') ? 220 : 26 + Math.random() * 40);
-    status.textContent = 'Executing…';
-    let ms = 0;
-    const timer = setInterval(() => { status.textContent = `Executing… ${ms += 3} ms`; if (ms >= 12) { clearInterval(timer); finish(ms); } }, 60);
-  }, 1100);
-
-  // Subtle 3D tilt on the card
-  if (!finePointer) return;
-  const card = $('.query');
-  card.addEventListener('pointermove', (e) => {
-    const r = card.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-    card.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+  let html = '';
+  for (const lv of [2, 4, 6, 8, 10]) html += `<polygon class="ring" points="${ATTRIBUTES.map((_, i) => pt(i, lv).join(',')).join(' ')}"/>`;
+  ATTRIBUTES.forEach(([name, v], i) => {
+    const [x, y] = pt(i, 10), [lx, ly] = pt(i, 12.4);
+    html += `<line class="axis" x1="0" y1="0" x2="${x}" y2="${y}"/>`;
+    html += `<text class="lbl" x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle">${esc(name)}</text>`;
+    html += `<text class="lvl" x="${lx}" y="${ly + 13}" text-anchor="middle" dominant-baseline="middle">${v}</text>`;
   });
-  card.addEventListener('pointerleave', () => { card.style.transition = 'transform .6s'; card.style.transform = ''; setTimeout(() => card.style.transition = '', 600); });
+  html += `<polygon class="shape" points="${ATTRIBUTES.map(([, v], i) => pt(i, v).join(',')).join(' ')}"/>`;
+  ATTRIBUTES.forEach(([, v], i) => { const [x, y] = pt(i, v); html += `<circle class="pt" cx="${x}" cy="${y}" r="4"/>`; });
+  svg.insertAdjacentHTML('beforeend', html);
 })();
 
-/* ---------- Section titles: wrap words for a masked reveal ---------- */
-$$('.title, [data-split-words]').forEach((el) => {
-  el.innerHTML = el.textContent.trim().split(/\s+/)
-    .map((word, i) => `<span class="word"><span style="--i:${i}">${word}</span></span>`).join(' ');
-});
-
-/* ---------- Services: expandable rows ---------- */
+/* ---------- Gauges, skill bars, unlocking ---------- */
 (() => {
-  const list = $('#services-list');
-  list.innerHTML = SERVICES.map((s, i) => `
-    <li class="service${i === 0 ? ' is-open' : ''}">
-      <button class="service-toggle" type="button" aria-expanded="${i === 0}" aria-controls="service-${i}">
-        <span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[s.icon]}</svg></span>
-        <span class="service-name">${s.name}</span>
-        <span class="service-plus" aria-hidden="true"></span>
-      </button>
-      <div class="service-panel" id="service-${i}"><div>
-        <div class="service-panel-inner">
-          <p>${s.text}</p>
-          <div class="service-chips">${s.chips.map((c) => `<span>${c}</span>`).join('')}</div>
+  const LEN = Math.PI * 80;
+  $('#gauges').innerHTML = GAUGES.map((g) => `
+    <div class="gauge" style="--len:${LEN.toFixed(1)};--off:${(LEN * (1 - g.level / 10)).toFixed(1)};--deg:${(-90 + 180 * g.level / 10).toFixed(0)}deg">
+      <svg viewBox="0 0 200 112" aria-hidden="true">
+        <path class="track" d="M20 100 A80 80 0 0 1 180 100"/>
+        <path class="fill" d="M20 100 A80 80 0 0 1 180 100"/>
+        <path class="tick" d="M38 100 A62 62 0 0 1 162 100"/>
+        <line class="needle" x1="100" y1="100" x2="100" y2="32"/>
+        <circle class="hub" cx="100" cy="100" r="7"/>
+      </svg>
+      <h4>${esc(g.name)}</h4>
+      <p>Lv <b>${g.level}</b> · ${esc(g.note)}</p>
+    </div>`).join('');
+
+  $('#skill-list').innerHTML = SKILLS.map(([name, lv, tip]) => `
+    <div class="skill-row" tabindex="0">
+      <span class="nm">${esc(name)}</span>
+      <span class="segs" aria-hidden="true">${Array.from({ length: 10 }, (_, i) => `<i class="${i < lv ? 'on' : ''}" style="--n:${i}"></i>`).join('')}</span>
+      <span class="lv">Lv ${lv}</span>
+      <span class="skill-tip">${esc(tip)}</span>
+    </div>`).join('');
+
+  $('#unlocking').innerHTML = UNLOCKING.map(([name, pct], i) => `
+    <div class="unlock" style="--pct:${pct}%;--n:${i}">
+      <div class="top"><span>${esc(name)}</span><span>${pct}% XP</span></div>
+      <div class="bar"><span></span></div>
+    </div>`).join('');
+})();
+
+/* ---------- Achievements ---------- */
+(() => {
+  $('#badges').innerHTML = ACHIEVEMENTS.map((a) => `
+    <div class="badge" tabindex="0" role="button" aria-label="${esc(a.title)}: ${esc(a.back)}">
+      <div class="badge-inner">
+        <div class="badge-face">
+          <svg class="medal" viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="ring" cx="50" cy="50" r="46"/>
+            <circle class="tick" cx="50" cy="50" r="40"/>
+            <circle cx="50" cy="50" r="30" fill="var(--signal)"/>
+            <text x="50" y="51" text-anchor="middle" dominant-baseline="middle" fill="#0A0A0A" style="font:800 ${a.glyph.length > 2 ? 16 : 22}px Archivo, sans-serif">${esc(a.glyph)}</text>
+          </svg>
+          <h4>${esc(a.title)}</h4>
+          <span class="when">${esc(a.when)}</span>
         </div>
-      </div></div>
-    </li>`).join('');
-
-  list.addEventListener('click', (e) => {
-    const btn = e.target.closest('.service-toggle');
-    if (!btn) return;
-    const item = btn.parentElement;
-    const open = !item.classList.contains('is-open');
-    item.classList.toggle('is-open', open);
-    btn.setAttribute('aria-expanded', open);
+        <div class="badge-face badge-back">
+          <span class="when">${esc(a.when)}</span>
+          <p>${esc(a.back)}</p>
+        </div>
+      </div>
+    </div>`).join('');
+  $('#badges').addEventListener('click', (e) => e.target.closest('.badge')?.classList.toggle('is-flipped'));
+  $('#badges').addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    e.preventDefault();
+    e.target.closest('.badge')?.classList.toggle('is-flipped');
   });
 })();
 
-/* ---------- Agentic AI demo ---------- */
-const agentDemo = (() => {
-  const box = $('#agent'), q = $('#agent-question'), steps = $('#agent-steps');
-  const answer = $('#agent-answer'), answerText = $('.text', answer), replay = $('#agent-replay');
-  const wait = (ms) => new Promise((r) => setTimeout(r, reduceMotion ? 0 : ms));
-  let running = false;
-
-  async function type(el, text, speed) {
-    if (reduceMotion) { el.textContent = text; return; }
-    el.textContent = '';
-    for (const ch of text) { el.textContent += ch; await wait(speed); }
-  }
-
-  async function run() {
-    if (running) return;
-    running = true;
-    replay.disabled = true;
-    box.classList.add('is-running');
-    steps.innerHTML = '';
-    answer.classList.remove('is-shown');
-    answerText.textContent = '';
-
-    await type(q, AGENT_RUN.question, 22);
-    await wait(400);
-    for (const html of AGENT_RUN.steps) {
-      const li = document.createElement('li');
-      li.innerHTML = `<span class="step-mark" aria-hidden="true"></span><span>${html}</span>`;
-      steps.append(li);
-      await wait(900 + Math.random() * 500);
-      li.classList.add('done');
-      await wait(150);
-    }
-    answer.classList.add('is-shown');
-    await type(answerText, AGENT_RUN.answer, 14);
-
-    box.classList.remove('is-running');
-    replay.disabled = false;
-    running = false;
-  }
-
-  replay.addEventListener('click', run);
-  return { run };
-})();
+/* ---------- Classes ---------- */
+$('#class-list').innerHTML = CLASSES.map((c) => `
+  <div class="cell class-cell">
+    <svg viewBox="0 0 64 64" aria-hidden="true">
+      <rect width="64" height="64" fill="var(--signal)"/>
+      <g class="rot">${c.art === 'gauge' ? '<circle cx="32" cy="32" r="22" fill="none" stroke="#0A0A0A" stroke-width="6" stroke-dasharray="1 5"/>' : c.art === 'orbit' ? '<circle cx="32" cy="32" r="22" fill="none" stroke="#0A0A0A" stroke-width="2"/><circle cx="32" cy="10" r="5" fill="var(--alert)"/>' : '<path d="M10 32h44M32 10v44" stroke="#0A0A0A" stroke-width="3"/>'}</g>
+      <circle cx="32" cy="32" r="9" fill="#0A0A0A"/>
+    </svg>
+    <h3>${esc(c.title)}</h3>
+    <p>${esc(c.text)}</p>
+    <div class="quest-tags">${c.tags.map((t) => `<span>${esc(t)}</span>`).join('')}</div>
+  </div>`).join('');
 
 /* ---------- Scroll reveals ---------- */
 (() => {
-  $$('.section-head p, .service, .sync, .agent, .tl-item, .edu, .stack-groups > div, .community, .contact-lede, .contact-actions').forEach((el, i) => {
+  // Whole grids are revealed, not their cells: a hidden cell would expose the grid's line-colored background
+  $$('.section-head, .quest, .client-quests .grid, .locked-grid, .gauges, .badges, .classes, .contact .grid').forEach((el, i) => {
     el.setAttribute('data-reveal', '');
-    el.style.setProperty('--rd', `${(i % 4) * .08}s`);
+    el.style.setProperty('--rd', `${(i % 4) * .07}s`);
   });
-  $$('.process li').forEach((li, i) => li.style.setProperty('--i', i));
-
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (!e.isIntersecting) continue;
       e.target.classList.add('is-in');
-      if (e.target.id === 'agent') setTimeout(agentDemo.run, 500);
       io.unobserve(e.target);
     }
-  }, { threshold: .2, rootMargin: '0px 0px -8% 0px' });
-  $$('[data-reveal], .title, .contact-title, .process').forEach((el) => io.observe(el));
+  }, { threshold: .2, rootMargin: '0px 0px -6% 0px' });
+  $$('[data-reveal], .radar, .gauge, .skill-list, .unlocking, .xp-bar').forEach((el) => io.observe(el));
 })();
 
-/* ---------- Sync diagram: packets, outage and replay ---------- */
+/* ---------- Scroll progress and current section ---------- */
 (() => {
-  const sync = $('.sync'), group = $('#packets'), queueEl = $('#queue');
-  const linkA = $('#link-a'), linkB = $('#link-b');
-  const btn = $('#outage'), log = $('#sync-log');
-  const nodes = $$('.node', sync);
-  const NS = 'http://www.w3.org/2000/svg';
-  let down = false, queue = 0, visible = false;
-
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(sync);
-
-  function pulse(node) { node.classList.remove('pulse'); void node.getBBox(); node.classList.add('pulse'); }
-
-  function travel(path, cls, ms) {
-    return new Promise((resolve) => {
-      const dot = document.createElementNS(NS, 'circle');
-      dot.setAttribute('r', 7); dot.setAttribute('class', `packet ${cls}`);
-      const start = path.getPointAtLength(0);
-      dot.setAttribute('cx', start.x); dot.setAttribute('cy', start.y);
-      group.append(dot);
-      const len = path.getTotalLength(), t0 = performance.now();
-      requestAnimationFrame(function step(t) {
-        const p = Math.min(1, (t - t0) / ms), e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-        const pt = path.getPointAtLength(e * len);
-        dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
-        if (p < 1) requestAnimationFrame(step); else { dot.remove(); resolve(); }
-      });
-    });
-  }
-
-  function setQueue(n) {
-    queue = n;
-    queueEl.textContent = n ? `${n} queued` : '';
-  }
-
-  async function send() {
-    await travel(linkA, '', 1100);
-    pulse(nodes[1]);
-    if (down) { setQueue(queue + 1); return; }
-    await travel(linkB, '', 1100);
-    pulse(nodes[2]);
-  }
-
-  async function flush() {
-    const n = queue;
-    for (let i = 0; i < n && !down; i++) {
-      setQueue(queue - 1);
-      travel(linkB, 'retry', 900).then(() => pulse(nodes[2]));
-      await new Promise((r) => setTimeout(r, 220));
-    }
-  }
-
-  btn.addEventListener('click', () => {
-    down = !down;
-    btn.setAttribute('aria-pressed', down);
-    sync.classList.toggle('is-down', down);
-    btn.textContent = down ? 'Restore the connection' : 'Cut the connection';
-    log.textContent = down
-      ? 'Connection lost. The service keeps collecting changes in a queue.'
-      : `Back online. Sent ${queue} queued ${queue === 1 ? 'record' : 'records'}, none lost.`;
-    if (!down) flush();
-  });
-
-  if (reduceMotion) return;
-  setInterval(() => { if (visible && !document.hidden) send(); }, 900);
-})();
-
-/* ---------- Timeline drawn by scroll ---------- */
-(() => {
-  const tl = $('.timeline');
-  const items = $$('.tl-item', tl);
   const bar = $('.progress span');
-  const header = $('.site-header');
   const links = $$('.site-header nav a');
   const sections = links.map((a) => $(a.getAttribute('href')));
-  const sideLinks = $$('.side-index a');
-  const sideSections = sideLinks.map((a) => $(a.getAttribute('href')));
-  let lastY = scrollY;
-
-  function onScroll() {
-    const y = scrollY, vh = innerHeight;
-    bar.style.transform = `scaleX(${y / (document.documentElement.scrollHeight - vh) || 0})`;
-
-    header.classList.toggle('is-scrolled', y > 20);
-    header.classList.toggle('is-hidden', y > lastY && y > 400);
-    lastY = y;
-
-    const r = tl.getBoundingClientRect();
-    const p = Math.min(1, Math.max(0, (vh * .6 - r.top) / r.height));
-    tl.style.setProperty('--progress', p);
-    items.forEach((it) => it.classList.toggle('is-lit', it.getBoundingClientRect().top < vh * .6));
-
+  const onScroll = () => {
+    const vh = innerHeight;
+    bar.style.transform = `scaleX(${scrollY / (document.documentElement.scrollHeight - vh) || 0})`;
     let current = -1;
-    sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < vh * .4) current = i; });
+    sections.forEach((s, i) => { if (s.getBoundingClientRect().top < vh * .4) current = i; });
     links.forEach((a, i) => a.classList.toggle('is-current', i === current));
-
-    let side = 0;
-    sideSections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < vh * .4) side = i; });
-    sideLinks.forEach((a, i) => a.classList.toggle('is-current', i === side));
-  }
+  };
   addEventListener('scroll', () => requestAnimationFrame(onScroll), { passive: true });
   onScroll();
 })();
 
-/* ---------- Projects ---------- */
-(() => {
-  const wrap = $('#projects');
-  const art = (i) => {
-    const shapes = [
-      '<g fill="none" stroke="currentColor" stroke-width="6"><rect x="20" y="20" width="200" height="200"/><rect x="70" y="70" width="100" height="100" fill="currentColor"/></g>',
-      '<g fill="currentColor"><path d="M20 120 120 20l100 100-100 100z" fill="none" stroke="currentColor" stroke-width="6"/><path d="M95 120 120 95l25 25-25 25z"/></g>',
-      '<g fill="currentColor"><rect x="20" y="40" width="200" height="26"/><rect x="60" y="96" width="160" height="26"/><rect x="100" y="152" width="120" height="26"/></g>',
-      '<g fill="none" stroke="currentColor" stroke-width="6"><circle cx="120" cy="120" r="96"/><path d="M24 120h192M120 24v192"/></g>',
-    ];
-    return `<svg class="project-art" viewBox="0 0 240 240" style="color:var(${['--alert', '--ink', '--alert', '--ink'][i % 4]})" aria-hidden="true">${shapes[i % 4]}</svg>`;
-  };
-
-  wrap.innerHTML = PROJECTS.map((p, i) => {
-    const tag = p.link ? 'a' : 'article';
-    const href = p.link ? ` href="${p.link}" target="_blank" rel="noopener"` : '';
-    return `<${tag} class="project" data-reveal style="--rd:${i * .1}s"${href}>
-      ${art(i)}
-      <span class="project-tag">${p.tag}</span>
-      <h3>${p.title}</h3>
-      <p>${p.text}</p>
-      <div class="project-meta">${p.stack.map((s) => `<span>${s}</span>`).join('')}</div>
-      ${p.status ? `<p class="project-status">${p.status}</p>` : ''}
-    </${tag}>`;
-  }).join('');
-
-  const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add('is-in'), io.unobserve(e.target))), { threshold: .15 });
-  $$('.project', wrap).forEach((card) => {
-    io.observe(card);
-    if (!finePointer || reduceMotion) return;
-    card.addEventListener('pointermove', (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      card.style.setProperty('--px', `${x * 100}%`);
-      card.style.setProperty('--py', `${y * 100}%`);
-      card.style.setProperty('--ry', `${(x - .5) * 7}deg`);
-      card.style.setProperty('--rx', `${(.5 - y) * 7}deg`);
-    });
-    card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
-  });
-})();
-
-/* ---------- Magnetic buttons + cursor ring ---------- */
+/* ---------- Magnetic buttons ---------- */
 (() => {
   if (!finePointer || reduceMotion) return;
   $$('.magnetic').forEach((b) => {
     b.addEventListener('pointermove', (e) => {
       const r = b.getBoundingClientRect();
-      b.style.setProperty('--mx', `${(e.clientX - r.left - r.width / 2) * .25}px`);
-      b.style.setProperty('--my', `${(e.clientY - r.top - r.height / 2) * .35}px`);
+      b.style.setProperty('--mx', `${(e.clientX - r.left - r.width / 2) * .2}px`);
+      b.style.setProperty('--my', `${(e.clientY - r.top - r.height / 2) * .3}px`);
     });
     b.addEventListener('pointerleave', () => { b.style.setProperty('--mx', '0px'); b.style.setProperty('--my', '0px'); });
   });
-
-  const ring = $('.cursor');
-  let x = 0, y = 0, cx = 0, cy = 0;
-  addEventListener('pointermove', (e) => {
-    x = e.clientX; y = e.clientY;
-    ring.classList.add('is-active');
-    ring.classList.toggle('is-hover', !!e.target.closest('a, button, .project, .stack-groups span'));
-  });
-  document.addEventListener('pointerleave', () => ring.classList.remove('is-active'));
-  (function loop() {
-    cx += (x - cx) * .18; cy += (y - cy) * .18;
-    ring.style.transform = `translate(${cx}px, ${cy}px)`;
-    requestAnimationFrame(loop);
-  })();
 })();
 
 /* ---------- Copy email ---------- */
@@ -524,12 +393,12 @@ const agentDemo = (() => {
     const email = btn.dataset.email;
     try {
       await navigator.clipboard.writeText(email);
-      label.textContent = 'Copied to clipboard';
-      hint.textContent = 'Paste it into your email app.';
     } catch (err) {
       location.href = `mailto:${email}`;
       return;
     }
+    label.textContent = 'Copied to clipboard';
+    hint.textContent = 'Paste it into your email app.';
     btn.classList.add('is-copied');
     setTimeout(() => { label.textContent = email; btn.classList.remove('is-copied'); }, 2200);
   });
